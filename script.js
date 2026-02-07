@@ -3,27 +3,27 @@ const changeBtn = document.getElementById('change_button');
 const resetBtn = document.getElementById('reset_button');
 
 changeBtn.addEventListener('click', () => {
-    const blockId = document.getElementById('block_id').value;
-    const color = document.getElementById('colour_id').value;
+  const blockId = parseInt(document.getElementById('block_id').value);
+  const color = document.getElementById('colour_id').value;
 
-    // Validate block ID
-    if (blockId < 1 || blockId > 9) {
-        alert("Block ID must be between 1 and 9");
-        return;
-    }
+  if (blockId < 1 || blockId > 9 || isNaN(blockId)) {
+    alert('Block ID must be a number between 1 and 9');
+    return;
+  }
 
-    // Reset all blocks to transparent
-    const gridItems = document.querySelectorAll('#grid-container .grid-item');
-    gridItems.forEach(item => item.style.backgroundColor = "transparent");
+  const items = document.querySelectorAll('.grid-container .grid-item');
 
-    // Change color of the specified block
-    gridItems[blockId - 1].style.backgroundColor = color;
+  // Reset all blocks
+  items.forEach(item => item.style.backgroundColor = 'transparent');
+
+  // Change selected block
+  items[blockId - 1].style.backgroundColor = color;
 });
 
 resetBtn.addEventListener('click', () => {
-    const gridItems = document.querySelectorAll('#grid-container .grid-item');
-    gridItems.forEach(item => item.style.backgroundColor = "transparent");
+  const items = document.querySelectorAll('.grid-container .grid-item');
+  items.forEach(item => item.style.backgroundColor = 'transparent');
 
-    document.getElementById('block_id').value = '';
-    document.getElementById('colour_id').value = '';
+  document.getElementById('block_id').value = '';
+  document.getElementById('colour_id').value = '';
 });
